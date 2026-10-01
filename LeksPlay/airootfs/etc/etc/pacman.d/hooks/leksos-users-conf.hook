@@ -1,0 +1,17 @@
+# remove from airootfs!
+# Overrides the hostname suggestion template in calamares users.conf so it
+# reads "<username>-leksos-x8664" instead of upstream's
+# "${first}-${product}" (hardware DMI name, e.g. "standardpc" in a QEMU VM).
+# Same override pattern as leksos-packages-conf.hook / leksos-removeuser-conf.hook.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = alci-calamares-config
+
+[Action]
+Description = Setting LeksOS hostname suggestion template in calamares users.conf...
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/cp -f /usr/local/share/leksos/users.conf /etc/calamares/modules/users.conf

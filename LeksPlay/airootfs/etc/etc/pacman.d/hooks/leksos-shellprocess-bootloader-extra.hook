@@ -1,0 +1,16 @@
+# remove from airootfs!
+# Installs shellprocess-bootloader-extra.conf (installs rEFInd/Limine if
+# checked in the extra-bootloader chooser) alongside alci-calamares-config,
+# same pattern as the other leksos-*.hook overrides.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = alci-calamares-config
+
+[Action]
+Description = Installing LeksOS extra-bootloader install script...
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/cp -f /usr/local/share/leksos/shellprocess-bootloader-extra.conf /etc/calamares/modules/shellprocess-bootloader-extra.conf

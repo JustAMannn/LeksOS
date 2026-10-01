@@ -1,0 +1,16 @@
+# remove from airootfs!
+# Installs the LeksOS extra-bootloader picker page config
+# (packagechooser-bootloader.conf) alongside alci-calamares-config, same
+# pattern as the other leksos-*.hook overrides.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = alci-calamares-config
+
+[Action]
+Description = Installing LeksOS extra-bootloader picker config...
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/cp -f /usr/local/share/leksos/packagechooser-bootloader.conf /etc/calamares/modules/packagechooser-bootloader.conf
