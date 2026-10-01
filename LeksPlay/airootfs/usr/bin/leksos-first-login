@@ -1,0 +1,20 @@
+#!/bin/bash
+
+MARKER="$HOME/.config/leksos-first-login-done"
+WALLPAPER="/usr/share/wallpapers/Umamuleks/contents/images/1280x960.jpg"
+
+[ -e "$MARKER" ] && exit 0
+
+for i in {1..30}; do
+    if pgrep -x plasmashell >/dev/null; then
+        break
+    fi
+    sleep 1
+done
+
+if [ -f "$WALLPAPER" ]; then
+    plasma-apply-wallpaperimage "$WALLPAPER"
+fi
+
+mkdir -p "$HOME/.config"
+touch "$MARKER"
