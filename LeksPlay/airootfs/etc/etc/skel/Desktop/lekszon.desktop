@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Lekszon
-Exec=firefox http://104.143.218.38/LeksZON
-Icon=/usr/share/wallpapers/lekszonlogo.png
-Terminal=false
-Categories=Network;
