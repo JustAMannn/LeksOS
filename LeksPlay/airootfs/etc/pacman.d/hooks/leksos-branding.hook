@@ -1,0 +1,18 @@
+# remove from airootfs!
+# alci-calamares-config ships etc/calamares/branding/default/* (images,
+# branding.desc, slideshow QML). Drop replacement files with the same
+# names into airootfs/usr/local/share/leksos/calamares-branding/default/
+# and they'll overwrite the package's copy post-install, same pattern as
+# the other leksos-*.hook overrides.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = alci-calamares-config
+
+[Action]
+Description = Installing LeksOS calamares branding...
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/cp -rf /usr/local/share/leksos/calamares-branding/default/. /etc/calamares/branding/default/

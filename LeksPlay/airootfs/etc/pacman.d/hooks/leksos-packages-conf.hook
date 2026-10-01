@@ -1,0 +1,16 @@
+# remove from airootfs!
+# alci-calamares-config ships its own etc/calamares/modules/packages.conf,
+# which would conflict with a copy placed directly in the airootfs overlay.
+# Overwrite it post-install instead, once pacman owns the file.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = alci-calamares-config
+
+[Action]
+Description = Installing LeksOS package selection into calamares packages.conf...
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/cp -f /usr/local/share/leksos/packages.conf /etc/calamares/modules/packages.conf

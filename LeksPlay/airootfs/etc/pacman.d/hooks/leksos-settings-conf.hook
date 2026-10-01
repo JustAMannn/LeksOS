@@ -1,0 +1,17 @@
+# remove from airootfs!
+# alci-calamares-config ships etc/calamares/settings.conf, which would
+# conflict with a copy placed directly in the airootfs overlay. Overwrite
+# post-install to add the DE/display-manager/bootloader netinstall chooser
+# instances and wire them into the sequence.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = alci-calamares-config
+
+[Action]
+Description = Installing LeksOS calamares sequence (DE/DM/bootloader chooser)...
+When = PostTransaction
+Depends = coreutils
+Exec = /usr/bin/cp -f /usr/local/share/leksos/settings.conf /etc/calamares/settings.conf
